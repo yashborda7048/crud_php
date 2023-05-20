@@ -6,6 +6,7 @@ include 'assets/components/header.php';
     <table cellpadding="7px">
         <thead>
             <th>Id</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Address</th>
             <th>Class</th>
@@ -18,6 +19,7 @@ include 'assets/components/header.php';
             // SQL Query Enter for Table Data
             $sql = "SELECT
                     student.id,
+                    student.img,
                     student.name,
                     student.address,
                     class_details.class_name,
@@ -28,20 +30,24 @@ include 'assets/components/header.php';
                 while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <tr>
-                        <td>
-                            <?php echo $row['id'] ?>
+                        <td style='text-align: center;'>
+                            [<?php echo $row['id'] ?>]
                         </td>
                         <td>
-                            <?php echo $row['name'] ?>
+                            <img width="70px" height="70px" src="assets/upload_img/<?php echo $row['img'] ?>"
+                                alt="<?php echo $row['img'] ?>">
                         </td>
                         <td>
-                            <?php echo $row['address'] ?>
+                            <?php echo ($row['name'] != '') ? $row['name'] : '-----' ?>
                         </td>
                         <td>
-                            <?php echo $row['class_name'] ?>
+                            <?php echo ($row['address'] != '') ? $row['address'] : '-----' ?>
                         </td>
                         <td>
-                            <?php echo $row['phone'] ?>
+                            <?php echo ($row['class_name'] != '') ? $row['class_name'] : '-----' ?>
+                        </td>
+                        <td>
+                            <?php echo ($row['phone'] != '') ? $row['phone'] : '-----' ?>
                         </td>
                         <td>
                             <a href='edit.php?id=<?php echo $row['id']; ?>'>Edit</a>

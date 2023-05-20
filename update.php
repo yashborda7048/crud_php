@@ -3,8 +3,8 @@
     <h2>Edit Record</h2>
     <form class="post-form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="post">
         <div class="form-group">
-            <label>Id</label>
-            <input type="text" name="id" />
+            <label>Id <span class="text-danger">*</span></label>
+            <input type="number" name="id" required />
         </div>
         <input class="submit" type="submit" name="showbtn" value="Show" />
     </form>
@@ -17,19 +17,20 @@
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 ?>
-                <form class="post-form" action="assets/components/updatedata.php" method="post">
+                <form class="post-form" style="margin-top: 20px;" action="assets/components/updatedata.php" method="post"
+                    enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>Name <span class="text-danger">*</span></label>
                         <input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
-                        <input type="text" name="name" value="<?php echo $row['name'] ?>" />
+                        <input type="text" name="name" value="<?php echo $row['name'] ?>" required />
                     </div>
                     <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" name="address" value="<?php echo $row['address'] ?>" />
+                        <label>Address <span class="text-danger">*</span></label>
+                        <input type="text" name="address" value="<?php echo $row['address'] ?>" required />
                     </div>
                     <div class="form-group">
-                        <label>Class</label>
-                        <select name="class">
+                        <label>Class <span class="text-danger">*</span></label>
+                        <select name="class" required>
                             <option value="" selected disabled>Select Class</option>
                             <?php
                             $sql_1 = "SELECT * FROM class_details";
@@ -52,9 +53,21 @@
                         <label>Phone</label>
                         <input type="text" name="phone" value="<?php echo $row['phone'] ?>" />
                     </div>
+                    <div class="form-group">
+                        <label>Upload Img</label>
+                        <input type="hidden" name="img" value="<?php echo $row['img'] ?>" />
+                        <input type="file" name="new_img" onchange='upload_img()' />
+                    </div>
+                    <div class="form-group">
+                        <label for=""></label>
+                        <img width="250px" height="250px" src="assets/upload_img/<?php echo $row['img'] ?>"
+                            alt="<?php echo $row['img'] ?>">
+                    </div>
                     <input class="submit" type="submit" value="Update" />
                 </form>
             <?php }
+        } else {
+            echo 'Not Match Found.';
         }
     } ?>
 </div>

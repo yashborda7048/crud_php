@@ -4,6 +4,15 @@
     <h2>Update Record</h2>
     <?php
     $stu_id = $_GET['id'];
+
+    $nameErr = "";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["name"])) {
+            $nameErr = 'Name is required';
+        }
+    }
+
+
     include 'assets/helper/config.php';
     $sql = "SELECT * FROM student WHERE student.id = {$stu_id}";
     $result = mysqli_query($conn, $sql) or die('Query Unsuccessful.');
@@ -12,17 +21,18 @@
             ?>
             <form class="post-form" action="assets/components/updatedata.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label>Name</label>
+                    <label>Name <span class="text-danger">*</span></label>
                     <input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
-                    <input type="text" name="name" value="<?php echo $row['name'] ?>" />
+                    <input type="text" name="name" value="<?php echo $row['name'] ?>" required/>
+                    <span class="text-danger"><?php echo '* ' . $nameErr;?></span>
                 </div>
                 <div class="form-group">
-                    <label>Address</label>
-                    <input type="text" name="address" value="<?php echo $row['address'] ?>" />
+                    <label>Address <span class="text-danger">*</span></label>
+                    <input type="text" name="address" value="<?php echo $row['address'] ?>" required />
                 </div>
                 <div class="form-group">
-                    <label>Class</label>
-                    <select name="class">
+                    <label>Class <span class="text-danger">*</span></label>
+                    <select name="class" required>
                         <option value="" selected disabled>Select Class</option>
                         <?php
                         $sql_1 = "SELECT * FROM class_details";

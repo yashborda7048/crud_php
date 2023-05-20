@@ -3,16 +3,16 @@
     <h2>Add New Record</h2>
     <form class="post-form" action="assets/components/savedata.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label>Name</label>
-            <input type="text" name="name" />
+            <label>Name <span class="text-danger">*</span></label>
+            <input type="text" name="name" required/>
         </div>
         <div class="form-group">
-            <label>Address</label>
-            <input type="text" name="address" />
+            <label>Address <span class="text-danger">*</span></label>
+            <input type="text" name="address" required/>
         </div>
         <div class="form-group">
-            <label>Class</label>
-            <select name="class">
+            <label>Class <span class="text-danger">*</span></label>
+            <select name="class" required>
                 <option value="" selected disabled>Select Class</option>
                 <?php
                 include 'assets/helper/config.php';
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label>Upload Img</label>
-            <input type="file" name="new_img"  />
+            <input type="file" name="new_img" />
         </div>
         <input class="submit" type="submit" value="Save" />
     </form>

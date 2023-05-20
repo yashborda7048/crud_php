@@ -15,8 +15,8 @@ if (isset($_POST['deletebtn'])) {
     <h2>Delete Record</h2>
     <form class="post-form" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
         <div class="form-group">
-            <label>Id</label>
-            <input type="text" name="id" />
+            <label>Id <span class="text-danger">*</span></label>
+            <input type="text" name="id" required/>
         </div>
         <input class="submit" type="submit" name="deletebtn" value="Delete" />
     </form>
