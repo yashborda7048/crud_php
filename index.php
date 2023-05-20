@@ -8,10 +8,17 @@ include 'header.php';
     $username = "root";
     $password = "";
     $database = "crud";
+    // Create connection
     $conn = mysqli_connect($servername, $username, $password, $database) or die('Connection Failed');
-    $sql = 'SELECT student.id , student.name , student.address , class.name AS [class name], student.phone  FROM student INNER JOIN class ON student.class = class.class_id';
+    // SQL Query Enter for Table Data
+    $sql = "SELECT
+    student.id,
+    student.name,
+    student.address,
+    class_details.class_name,
+    student.phone
+     FROM student JOIN class_details WHERE student.class = class_details.class_id";
     $result = mysqli_query($conn, $sql) or die('Query Unsuccessful.');
-
     if (mysqli_num_rows($result) > 0) {
         ?>
         <table cellpadding="7px">
@@ -25,7 +32,7 @@ include 'header.php';
             </thead>
             <tbody>
                 <?php
-                while ($row <= mysqli_fetch_assoc($result)) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                     <tr>
                         <td>
@@ -37,19 +44,23 @@ include 'header.php';
                         <td>
                             <?php echo $row['address'] ?>
                         </td>
-
+                        <td>
+                            <?php echo $row['class_name'] ?>
+                        </td>
                         <td>
                             <?php echo $row['phone'] ?>
                         </td>
                         <td>
-                            <a href='edit.php'>Edit</a>
-                            <a href='delete-inline.php'>Delete</a>
+                            <a href='edit.php?id=<?php echo $row['id']; ?>'>Edit</a>
+                            <a href="delete-inline.php?id=<?php echo $row['id']; ?>">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
-    <?php } ?>
+    <?php } else {
+        echo "0 results";
+    } ?>
 </div>
 </div>
 </body>
