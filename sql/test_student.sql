@@ -26,3 +26,7 @@ SELECT *
 FROM `student`
     JOIN `class_details`
 WHERE `student`.`class` = `class_details`.`class_id`;
+-- add img cloumn 
+ALTER TABLE `student`
+ADD `img` VARCHAR(500) NOT NULL
+AFTER `phone`;

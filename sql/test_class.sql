@@ -14,3 +14,5 @@ VALUES ('BCOM'),
 -- change table name 
 ALTER TABLE `class`
     RENAME TO `class_details`;
+-- rename column name 
+ALTER TABLE `class_details` CHANGE `name` `class_name` VARCHAR(50) NOT NULL;

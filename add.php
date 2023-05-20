@@ -1,7 +1,7 @@
-<?php include 'header.php'; ?>
+<?php include 'assets/components/header.php'; ?>
 <div id="main-content">
     <h2>Add New Record</h2>
-    <form class="post-form" action="savedata.php" method="post">
+    <form class="post-form" action="assets/components/savedata.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label>Name</label>
             <input type="text" name="name" />
@@ -15,12 +15,7 @@
             <select name="class">
                 <option value="" selected disabled>Select Class</option>
                 <?php
-                $servername = "localhost";
-                $username = "root";
-                $password = "";
-                $database = "crud";
-                // Create connection
-                $conn = mysqli_connect($servername, $username, $password, $database) or die('Connection Failed');
+                include 'assets/helper/config.php';
                 $sql = "SELECT * FROM class_details";
                 $result = mysqli_query($conn, $sql) or die('Query Unsuccessful.');
                 if (mysqli_num_rows($result) > 0) {
@@ -35,9 +30,23 @@
             <label>Phone</label>
             <input type="text" name="phone" />
         </div>
-        <input class="submit" type="submit" value="Save"  />
+        <div class="form-group">
+            <label>Upload Img</label>
+            <input type="file" name="new_img"  />
+        </div>
+        <input class="submit" type="submit" value="Save" />
     </form>
 </div>
 </div>
 </body>
+<script>
+    // function upload_img() {
+    //     if (isset($_FILES['new_img'])) {
+    //         $file_name = $_FILES['new_img']['name'];
+    //         $file_tmp_name = $_FILES['new_img']['tmp_name'];
+    //         move_uploaded_file($file_tmp_name, '../upload_img/'.$file_name);
+    //     }
+    // }
+</script>
+
 </html>

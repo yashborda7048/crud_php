@@ -1,21 +1,16 @@
-<?php include 'header.php'; ?>
+<?php include 'assets/components/header.php'; ?>
 
 <div id="main-content">
     <h2>Update Record</h2>
     <?php
     $stu_id = $_GET['id'];
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "crud";
-    // Create connection
-    $conn = mysqli_connect($servername, $username, $password, $database) or die('Connection Failed');
+    include 'assets/helper/config.php';
     $sql = "SELECT * FROM student WHERE student.id = {$stu_id}";
     $result = mysqli_query($conn, $sql) or die('Query Unsuccessful.');
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             ?>
-            <form class="post-form" action="updatedata.php" method="post">
+            <form class="post-form" action="assets/components/updatedata.php" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Name</label>
                     <input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
@@ -50,12 +45,30 @@
                     <label>Phone</label>
                     <input type="text" name="phone" value="<?php echo $row['phone'] ?>" />
                 </div>
+                <div class="form-group">
+                    <label>Upload Img</label>
+                    <input type="hidden" name="img" value="<?php echo $row['img'] ?>" />
+                    <input type="file" name="new_img" onchange='upload_img()' />
+                </div>
+                <div class="form-group">
+                    <label for=""></label>
+                    <img width="250px" height="250px" src="assets/upload_img/<?php echo $row['img'] ?>"
+                        alt="<?php echo $row['img'] ?>">
+                </div>
                 <input class="submit" type="submit" value="Update" />
             </form>
         <?php }
     } ?>
 </div>
-</div>
+<script>
+    function upload_img() {
+        if (isset($_FILES['new_img'])) {
+            $file_name = $_FILES['new_img']['name'];
+            $file_tmp_name = $_FILES['new_img']['tmp_name'];
+            move_uploaded_file($file_tmp_name, '../upload_img/'.$file_name);
+        }
+    }
+</script>
 </body>
 
 </html>
