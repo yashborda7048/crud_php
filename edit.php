@@ -4,15 +4,6 @@
     <h2>Update Record</h2>
     <?php
     $stu_id = $_GET['id'];
-
-    $nameErr = "";
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["name"])) {
-            $nameErr = 'Name is required';
-        }
-    }
-
-
     include 'assets/helper/config.php';
     $sql = "SELECT * FROM student WHERE student.id = {$stu_id}";
     $result = mysqli_query($conn, $sql) or die('Query Unsuccessful.');
@@ -24,7 +15,6 @@
                     <label>Name <span class="text-danger">*</span></label>
                     <input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
                     <input type="text" name="name" value="<?php echo $row['name'] ?>" required/>
-                    <span class="text-danger"><?php echo '* ' . $nameErr;?></span>
                 </div>
                 <div class="form-group">
                     <label>Address <span class="text-danger">*</span></label>
@@ -53,7 +43,7 @@
                 </div>
                 <div class="form-group">
                     <label>Phone</label>
-                    <input type="text" name="phone" value="<?php echo $row['phone'] ?>" />
+                    <input type="tel" name="phone" maxlength="10" pattern="[0-9]{10}" value="<?php echo $row['phone'] ?>"/>
                 </div>
                 <div class="form-group">
                     <label>Upload Img</label>

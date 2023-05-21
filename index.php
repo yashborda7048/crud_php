@@ -57,7 +57,7 @@ include 'assets/components/header.php';
                 <?php }
             } else {
                 echo "<tr>
-                 <td colspan='6' class='text-center'>
+                 <td colspan='7' class='text-center'>
                  <h3>Add Data</h3>
                  </td> 
                  </tr>"; ?>

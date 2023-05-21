@@ -28,7 +28,7 @@
         </div>
         <div class="form-group">
             <label>Phone</label>
-            <input type="text" name="phone" />
+            <input type="tel" name="phone" maxlength="10" pattern="[0-9]{10}"/>
         </div>
         <div class="form-group">
             <label>Upload Img</label>
