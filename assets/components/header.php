@@ -26,5 +26,8 @@
                 <li>
                     <a href="delete.php">Delete</a>
                 </li>
+                <li>
+                    <a href="contact.php">Contact Us</a>
+                </li>
             </ul>
         </div>
