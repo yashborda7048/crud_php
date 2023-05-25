@@ -31,7 +31,8 @@ include 'assets/components/header.php';
                     ?>
                     <tr>
                         <td style='text-align: center;'>
-                            [<?php echo $row['id'] ?>]
+                            [
+                            <?php echo $row['id'] ?>]
                         </td>
                         <td>
                             <img width="70px" height="70px" src="assets/upload_img/<?php echo $row['img'] ?>"
