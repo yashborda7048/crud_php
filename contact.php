@@ -18,12 +18,12 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'yashborda123@gmail.com';                     //SMTP username
-    $mail->Password   = 'Yash@7048';                               //SMTP password
+    $mail->Password   = 'njmpyyrpxfmpwmwo';                               //SMTP password
     $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
     $mail->Port       = 587;        
 
     //Recipients
-    $mail->setFrom('webdevloper531@gmail.com', 'Mailer');
+    $mail->setFrom('yashborda123@gmail.com', 'Mailer');
     $mail->addAddress('webdevloper531@gmail.com', 'Joe User'); //Add a recipient
 
     //Attachments
