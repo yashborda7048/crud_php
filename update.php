@@ -1,4 +1,5 @@
 <?php include 'assets/components/header.php'; ?>
+
 <div id="main-content">
     <h2>Edit Record</h2>
     <form class="post-form" action="<?php $_SERVER["PHP_SELF"]; ?>" method="post">
